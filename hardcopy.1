@@ -1,0 +1,57 @@
+" Press ? for help             |  1 import React from 'react';
+                               |  2 import { Platform } from 'react-native';
+.. (up a dir)                  |  3 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+/home/denzdacs/Develop/Personal|  4
+¸ __tests__/                   |  5 import TabBarIcon from '../components/TabBarIcon';
+¸ assets/                      |  6 import Home from '../views/Home';
+¾ components/                  |  7 import Exercise from '../views/Links';
+  ¸ __tests__/                 |  8 import Settings from '../views/Settings';
+    StyledText.js              |  9
+    TabBarIcon.js              | 10 const config = Platform.select({
+¾ constants/                   | 11   web: { headerMode: 'screen' },
+    Colors.js                  | 12   default: {},
+    Layout.js                  | 13 });
+¾ navigation/                  | 14
+    AppNavigator.js            | 15 const HomeStack = createStackNavigator(
+    AppNavigator.web.js        | 16   {
+    MainTabNavigator.js        | 17     Home: Home,
+¸ node_modules/                | 18   },
+¾ views/                       | 19   config
+  ¾ Exercise/                  | 20 );
+      Exercise.js              | 21
+      index.js                 | 22 HomeStack.navigationOptions = {
+  ¾ Home/                      | 23   tabBarLabel: 'To-do',
+      Home.js                  | 24   tabBarIcon: ({ focused }) => (
+      index.js                 | 25     <TabBarIcon
+  ¾ Settings/                  | 26       focused={focused}
+      index.js                 | 27       name={
+      Settings.js              | 28         Platform.OS === 'ios'
+  App.js                       | 29           ? `ios-information-circle${focused ? '' : '-outline'}`
+  app.json                     | 30           : 'md-information-circle'
+  babel.config.js              | 31       }
+  package-lock.json            | 32     />
+  package.json                 | 33   ),
+~                              | 34 };
+~                              | 35
+~                              | 36 HomeStack.path = '';
+~                              | 37
+~                              | 38 const LinksStack = createStackNavigator(
+~                              | 39   {
+~                              | 40     Links: Exercise,
+~                              | 41   },
+~                              | 42   config
+~                              | 43 );
+~                              | 44
+~                              | 45 LinksStack.navigationOptions = {
+~                              | 46   tabBarLabel: 'Create A list',
+~                              | 47   tabBarIcon: ({ focused }) => (
+~                              | 48     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+~                              | 49   ),
+~                              | 50 };
+~                              | 51
+~                              | 52 LinksStack.path = '';
+~                              | 53
+~                              | 54 const SettingsStack = createStackNavigator(
+~                              | 55   {
+<op/Personal/javascript/bodytap
+"navigation/MainTabNavigator.js" 78L, 1576C written
